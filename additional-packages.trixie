@@ -1,0 +1,16 @@
+firmware-misc-nonfree
+mesa-utils
+nano
+calamares
+calamares-settings-debian
+grub-efi-arm64
+gparted
+live-task-localisation
+live-task-recommended
+systemd-timesyncd
+
+
+git
+wget
+curl
+pyhton3

@@ -59,9 +59,7 @@ jobs:
       - name: Build live iso
         shell: bash
         run: |
-          echo $(pwd)
-          mkdir live-build && cd live-build
-          echo $(pwd)
+          mkdir iso-build && cd iso-build
           cp ../lb-config-${{ matrix.CODENAME }}.sh lb-config.sh
           # cp ../additional-packages.${{ matrix.CODENAME }} additional-packages
           # cp ../customize-chroot-${{ matrix.CODENAME }}.hook.chroot customize-chroot.hook.chroot

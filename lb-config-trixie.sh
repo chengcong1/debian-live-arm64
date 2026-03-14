@@ -122,4 +122,4 @@ chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot
 # 复制rtl8852be的固件到firmware目录
 # cp -r ../rtw89 config/includes.chroot/usr/lib/firmware/
 
-sudo lb build
+# sudo lb build

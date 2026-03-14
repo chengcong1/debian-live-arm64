@@ -59,10 +59,12 @@ jobs:
       - name: Build live iso
         shell: bash
         run: |
+          echo $(pwd)
           mkdir iso-build && cd iso-build
+          echo $(pwd)
           cp ../lb-config-${{ matrix.CODENAME }}.sh lb-config.sh
-          cp ../addpackage-custom.list.chroot addpackage-custom.list.chroot
-          cp ../addpackage-kde.list.chroot addpackage-desktop.list.chroot
+          cp ../addpackage-custom.list.chroot .
+          cp ../addpackage-kde.list.chroot ./addpackage-desktop.list.chroot
           
           chmod +x lb-config.sh
           ./lb-config.sh

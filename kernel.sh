@@ -3,6 +3,8 @@
 
 mkdir kernel && cd kernel
 
+echo $PWD
+
 wget https://github.com/oras-project/oras/releases/download/v1.3.1/oras_1.3.1_linux_arm64.tar.gz
 tar -xzvf oras_1.3.1_linux_arm64.tar.gz
 chmod +x ./oras

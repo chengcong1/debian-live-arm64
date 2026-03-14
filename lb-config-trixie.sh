@@ -101,7 +101,7 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     # --debian-installer-gui true \
     # --linux-packages "linux-image linux-dtb linux-headers" \
     # --linux-flavours "legacy-rk35xx" \
-
+    # --apt-recommends false 不安装推荐的包，减少ios镜像大小，不能超过2GB
 # package-lists need to apt install packages in chroot
 cp addpackage-custom.list.chroot config/package-lists/
 cp addpackage-desktop.list.chroot config/package-lists/

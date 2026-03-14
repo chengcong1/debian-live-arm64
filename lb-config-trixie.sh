@@ -92,8 +92,8 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --firmware-binary false \
     --firmware-chroot false \
     --apt-secure false \
-    --updates true
-    # --apt-recommends false \
+    --updates true \
+    --apt-recommends false
     # --debian-installer false
     # --cache-packages true \
     # --cache-stages bootstrap,chroot
@@ -102,6 +102,8 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     # --linux-packages "linux-image linux-dtb linux-headers" \
     # --linux-flavours "legacy-rk35xx" \
     # --apt-recommends false 不安装推荐的包，减少ios镜像大小，不能超过2GB
+
+# persistence 持久化
 # package-lists need to apt install packages in chroot
 cp addpackage-custom.list.chroot config/package-lists/
 cp addpackage-desktop.list.chroot config/package-lists/
@@ -112,8 +114,14 @@ calamares-settings-debian
 live-task-localisation
 live-task-recommended
 systemd-timesyncd
-EOF
 
+live-tools
+live-config
+live-config-systemd
+live-boot
+live-boot-initramfs-tools
+EOF
+# 减少体积
 cat > config/hooks/live/0091-cleanup-packages.hook.chroot << EOF
 #!/bin/bash
 # 清理APT缓存
@@ -127,8 +135,9 @@ chmod +x config/hooks/live/0091-cleanup-packages.hook.chroot
 
 # copy custom kernel in config/packages.chroot/
 # no apt packages in config/packages.chroot/ auto install
-cp ../kernel/*.deb config/packages.chroot/
-
+# cp ../kernel/*.deb config/packages.chroot/
+mkdir -p config/includes.chroot/opt/
+cp ../kernel/*.deb config/includes.chroot/opt/
 # hooks remove-default-kernel
 cp ../0090-remove-default-kernel.hook.chroot config/hooks/live/
 chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot
@@ -136,7 +145,7 @@ chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot
 # 复制rtl8852be的固件到firmware目录
 mkdir -p config/includes.chroot/usr/lib/firmware
 cp -r ../rtw89 config/includes.chroot/usr/lib/firmware/
-
+# 如果内核包名还是版本是以-arm64结尾的，那么下面两行代码可以删除
 mkdir -p config/bootloaders/grub-pc
 cp ../grub.cfg config/bootloaders/grub-pc/
 # mkdir -p config/includes.chroot/opt/

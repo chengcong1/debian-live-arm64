@@ -12,7 +12,7 @@ systemsettings
 sddm
 kactivitymanagerd
 kscreen
-polkit-kde-agent
+polkit-kde-agent-1
 
 plasma-nm
 plasma-pa

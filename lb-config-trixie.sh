@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo $PWD
-mkdir -p live-build&& cd live-build
+# mkdir -p live-build&& cd live-build
 echo $PWD
 # 默认配置
 MODE="debian"

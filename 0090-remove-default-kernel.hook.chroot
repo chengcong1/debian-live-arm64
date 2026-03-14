@@ -26,6 +26,7 @@ if [ -n "$INSTALLED_KERNELS1" ]; then
 else
     echo "未发现默认内核包，跳过卸载步骤。"
 fi
+
 # 如果/opt/kernel目录下有deb包，则执行安装步骤
 if [ -d "/opt/kernel" ] && ls /opt/kernel/*.deb >/dev/null 2>&1; then
     echo "发现自定义内核包，正在安装..."

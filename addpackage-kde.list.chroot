@@ -5,7 +5,8 @@ mesa-utils
 
 plasma-desktop
 plasma-workspace
-kwin
+kwin-wayland
+kwin-x11
 systemsettings
 
 sddm
@@ -20,5 +21,5 @@ konsole
 dolphin
 kate
 plasma-systemmonitor
-spectacle
+kde-spectacle
 ark

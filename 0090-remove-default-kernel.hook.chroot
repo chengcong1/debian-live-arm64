@@ -4,7 +4,8 @@ set -e
 
 # 2. 识别并卸载默认内核
 # 逻辑与之前相同：找到具体版本的内核包并 purge
-INSTALLED_KERNELS=$(dpkg -l | grep "^ii" | grep -E "linux-image-[0-9]+\.[0-9]+\.[0-9]+\+deb[0-9]+-arm64" | awk '{print $2}')
+# INSTALLED_KERNELS=$(dpkg -l | grep "^ii" | grep -E "linux-image-[0-9]+\.[0-9]+\.[0-9]+\+deb[0-9]+-arm64" | awk '{print $2}')
+INSTALLED_KERNELS=$(dpkg -l | grep "^ii" | grep  "linux-image.*deb.*arm64" | awk '{print $2}')
 INSTALLED_KERNELS1=$(dpkg -l | grep "^ii" | grep "linux-image-arm64" | awk '{print $2}')
 
 if [ -n "$INSTALLED_KERNELS" ]; then

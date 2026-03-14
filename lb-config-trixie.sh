@@ -137,6 +137,6 @@ chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot
 mkdir -p config/includes.chroot/usr/lib/firmware
 cp -r ../rtw89 config/includes.chroot/usr/lib/firmware/
 
-
+mkdir -p config/includes.chroot/opt/
 cp ../kernel/*.deb config/includes.chroot/opt/
 # sudo lb build

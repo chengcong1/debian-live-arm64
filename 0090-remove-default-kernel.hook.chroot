@@ -6,7 +6,6 @@ set -e
 # 逻辑与之前相同：找到具体版本的内核包并 purge
 # INSTALLED_KERNELS=$(dpkg -l | grep "^ii" | grep -E "linux-image-[0-9]+\.[0-9]+\.[0-9]+\+deb[0-9]+-arm64" | awk '{print $2}')
 INSTALLED_KERNELS=$(dpkg -l | grep "^ii" | grep  "linux-image.*deb.*arm64" | awk '{print $2}')
-INSTALLED_KERNELS1=$(dpkg -l | grep "^ii" | grep "linux-image-arm64" | awk '{print $2}')
 
 if [ -n "$INSTALLED_KERNELS" ]; then
     echo "发现已安装默认内核: $INSTALLED_KERNELS"
@@ -17,6 +16,7 @@ else
     echo "未发现默认内核包，跳过卸载步骤。"
 fi
 
+INSTALLED_KERNELS1=$(dpkg -l | grep "^ii" | grep "linux-image-arm64" | awk '{print $2}')
 
 if [ -n "$INSTALLED_KERNELS1" ]; then
     echo "发现已安装默认内核: $INSTALLED_KERNELS1"
@@ -26,5 +26,13 @@ if [ -n "$INSTALLED_KERNELS1" ]; then
 else
     echo "未发现默认内核包，跳过卸载步骤。"
 fi
-
-update-grub
+# 如果/opt/kernel目录下有deb包，则执行安装步骤
+if [ -d "/opt/kernel" ] && ls /opt/kernel/*.deb >/dev/null 2>&1; then
+    echo "发现自定义内核包，正在安装..."
+    dpkg -i /opt/kernel/*.deb
+    apt-get install -f -y
+    echo "自定义内核安装完成。"
+    rm -rf /opt/kernel
+else
+    echo "未在 /opt/kernel 目录下找到 deb 包，跳过安装步骤。"
+fi

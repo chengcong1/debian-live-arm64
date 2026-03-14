@@ -70,8 +70,6 @@ jobs:
           ./lb-config.sh
           sudo apt -y install qemu-user-static debian-archive-keyring
 
-          cp ../kernel/*.deb config/packages.chroot/
-
           sudo lb build
           
       - name: Upload iso

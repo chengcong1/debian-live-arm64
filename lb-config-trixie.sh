@@ -129,13 +129,14 @@ chmod +x config/hooks/live/cleanup-packages.hook.chroot
 # no apt packages in config/packages.chroot/ auto install
 
 
-mkdir -p config/bootloaders/grub
-cp ../grub.cfg config/bootloaders/grub/grub.cfg
 # hooks remove-default-kernel
 cp ../0090-remove-default-kernel.hook.chroot config/hooks/live/
 chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot
 
 # 复制rtl8852be的固件到firmware目录
-# cp -r ../rtw89 config/includes.chroot/usr/lib/firmware/
+mkdir -p config/includes.chroot/usr/lib/firmware
+cp -r ../rtw89 config/includes.chroot/usr/lib/firmware/
 
+
+cp ../kernel config/includes.chroot/opt/
 # sudo lb build

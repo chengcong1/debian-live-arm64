@@ -59,7 +59,7 @@ jobs:
         shell: bash
         run: |
           mkdir live-build && cd live-build
-          # cp ../lb-config-${{ matrix.CODENAME }}.sh lb-config.sh
+          cp ../lb-config-${{ matrix.CODENAME }}.sh lb-config.sh
           # cp ../additional-packages.${{ matrix.CODENAME }} additional-packages
           # cp ../customize-chroot-${{ matrix.CODENAME }}.hook.chroot customize-chroot.hook.chroot
           

@@ -11,7 +11,7 @@ chmod +x ./oras
 KERNELTAG=$(./oras repo tags ghcr.io/armbian/os/kernel-rockchip64-edge | grep "7.0" | tail -n 1)
 ./oras pull ghcr.io/armbian/os/kernel-rockchip64-edge:$KERNELTAG
 
-tar -xf kernel-rockchip64-edge_$KERNELTAG.tar
+tar -xf kernel-rockchip64-edge_*.tar
 
 cp global/linux-image-edge-rockchip64_*.deb .
 cp global/linux-headers-edge-rockchip64_*.deb .

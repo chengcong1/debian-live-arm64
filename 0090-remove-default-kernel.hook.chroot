@@ -27,4 +27,4 @@ else
     echo "未发现默认内核包，跳过卸载步骤。"
 fi
 
-sudo update-grub
+update-grub

@@ -89,10 +89,12 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --bootappend-live "boot=live components quiet locales=zh_CN.UTF-8" \
     --binary-images iso-hybrid \
     --bootloaders grub-efi \
+    --apt-recommends false \
     --firmware-binary false \
     --firmware-chroot false \
     --apt-secure false \
-    --updates true
+    --updates true \
+    --debian-installer false
     # --cache-packages true \
     # --cache-stages bootstrap,chroot
     # --debian-installer live \
@@ -111,6 +113,17 @@ live-task-localisation
 live-task-recommended
 systemd-timesyncd
 EOF
+
+cat > config/hooks/live/0091-cleanup-packages.hook.chroot << EOF
+#!/bin/bash
+# 清理APT缓存
+apt-get clean
+# 删除文档和本地化文件（如果空间极度敏感）
+# find /usr/share/doc -type f ! -name copyright -delete
+# find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en' ! -name 'en_US' ! -name 'zh_CN' | xargs rm -rf
+# find /usr/share/man -type f -delete
+EOF
+chmod +x config/hooks/live/cleanup-packages.hook.chroot
 
 # copy custom kernel in config/packages.chroot/
 # no apt packages in config/packages.chroot/ auto install

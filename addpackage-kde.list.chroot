@@ -1,4 +1,4 @@
-
+locales
 network-manager
 network-manager-gnome
 mesa-utils
@@ -16,10 +16,13 @@ polkit-kde-agent-1
 
 plasma-nm
 plasma-pa
-
+# 终端
 konsole
+# 文件管理器
 dolphin
+# KDE 高级文本编辑器
 kate
+# 系统监控
 plasma-systemmonitor
+# kde截图工具
 kde-spectacle
-ark

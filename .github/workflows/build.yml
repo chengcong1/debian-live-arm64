@@ -50,16 +50,25 @@ jobs:
           sudo apt -y install debhelper po4a gettext devscripts build-essential
           dpkg-buildpackage -us -uc
           sudo apt -y install ../live-build_*_all.deb
+      - name: Install oras And Get Kernel
+        shell: bash
+        run: |
+          chmod +x kernel.sh
+          ./kernel.sh
       - name: Build live iso
         shell: bash
         run: |
           mkdir live-build && cd live-build
-          cp ../lb-config-${{ matrix.CODENAME }}.sh lb-config.sh
-          cp ../additional-packages.${{ matrix.CODENAME }} additional-packages
-          cp ../customize-chroot-${{ matrix.CODENAME }}.hook.chroot customize-chroot.hook.chroot
+          # cp ../lb-config-${{ matrix.CODENAME }}.sh lb-config.sh
+          # cp ../additional-packages.${{ matrix.CODENAME }} additional-packages
+          # cp ../customize-chroot-${{ matrix.CODENAME }}.hook.chroot customize-chroot.hook.chroot
+          
           chmod +x lb-config.sh
           ./lb-config.sh
           sudo apt -y install qemu-user-static debian-archive-keyring
+
+          cp ../kernel/*.deb config/packages.chroot/
+
           sudo lb build
           
       - name: Upload iso

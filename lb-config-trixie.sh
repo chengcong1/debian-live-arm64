@@ -129,6 +129,8 @@ chmod +x config/hooks/live/cleanup-packages.hook.chroot
 # no apt packages in config/packages.chroot/ auto install
 
 
+mkdir -p config/bootloaders/grub
+cp ../grub.cfg config/bootloaders/grub/grub.cfg
 # hooks remove-default-kernel
 cp ../0090-remove-default-kernel.hook.chroot config/hooks/live/
 chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot

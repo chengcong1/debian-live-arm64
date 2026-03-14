@@ -135,9 +135,9 @@ chmod +x config/hooks/live/0091-cleanup-packages.hook.chroot
 
 # copy custom kernel in config/packages.chroot/
 # no apt packages in config/packages.chroot/ auto install
-# cp ../kernel/*.deb config/packages.chroot/
-mkdir -p config/includes.chroot/opt/
-cp ../kernel/*.deb config/includes.chroot/opt/
+cp ../kernel/*.deb config/packages.chroot/
+# mkdir -p config/includes.chroot/opt/
+# cp ../kernel/*.deb config/includes.chroot/opt/
 # hooks remove-default-kernel
 cp ../0090-remove-default-kernel.hook.chroot config/hooks/live/
 chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot

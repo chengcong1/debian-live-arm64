@@ -89,12 +89,12 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --bootappend-live "boot=live components quiet locales=zh_CN.UTF-8" \
     --binary-images iso-hybrid \
     --bootloaders grub-efi \
-    --apt-recommends false \
     --firmware-binary false \
     --firmware-chroot false \
     --apt-secure false \
-    --updates true \
-    --debian-installer false
+    --updates true
+    # --apt-recommends false \
+    # --debian-installer false
     # --cache-packages true \
     # --cache-stages bootstrap,chroot
     # --debian-installer live \

@@ -61,8 +61,8 @@ jobs:
         run: |
           mkdir iso-build && cd iso-build
           cp ../lb-config-${{ matrix.CODENAME }}.sh lb-config.sh
-          # cp ../additional-packages.${{ matrix.CODENAME }} additional-packages
-          # cp ../customize-chroot-${{ matrix.CODENAME }}.hook.chroot customize-chroot.hook.chroot
+          cp ../addpackage-custom.list.chroot addpackage-custom.list.chroot
+          cp ../addpackage-kde.list.chroot addpackage-desktop.list.chroot
           
           chmod +x lb-config.sh
           ./lb-config.sh

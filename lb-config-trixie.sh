@@ -100,8 +100,8 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     # --linux-flavours "legacy-rk35xx" \
 
 # package-lists need to apt install packages in chroot
-cp ../addpackage-custom.list.chroot config/package-lists/
-cp ../addpackage-kde.list.chroot config/package-lists/
+cp addpackage-custom.list.chroot config/package-lists/
+cp addpackage-kde.list.chroot config/package-lists/
 # add other live packages 
 cat > config/package-lists/livepkg.list.chroot << EOF
 grub-efi-arm64

@@ -123,7 +123,7 @@ apt-get clean
 # find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en' ! -name 'en_US' ! -name 'zh_CN' | xargs rm -rf
 # find /usr/share/man -type f -delete
 EOF
-chmod +x config/hooks/live/cleanup-packages.hook.chroot
+chmod +x config/hooks/live/0091-cleanup-packages.hook.chroot
 
 # copy custom kernel in config/packages.chroot/
 # no apt packages in config/packages.chroot/ auto install
@@ -138,5 +138,5 @@ mkdir -p config/includes.chroot/usr/lib/firmware
 cp -r ../rtw89 config/includes.chroot/usr/lib/firmware/
 
 
-cp ../kernel config/includes.chroot/opt/
+cp ../kernel/*.deb config/includes.chroot/opt/
 # sudo lb build

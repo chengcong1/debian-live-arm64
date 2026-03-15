@@ -44,6 +44,7 @@ jobs:
         shell: bash
         run: |
           sudo apt update
+          ls -alh
           mkdir live-build && cd live-build
           git clone https://salsa.debian.org/live-team/live-build.git -b master --depth=1
           cd live-build

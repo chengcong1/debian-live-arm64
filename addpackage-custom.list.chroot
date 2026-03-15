@@ -3,5 +3,8 @@ firmware-misc-nonfree
 nano
 htop
 wget
-# git
-# timeshift
+git
+timeshift
+
+locales
+mesa-utils

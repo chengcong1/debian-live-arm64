@@ -90,7 +90,9 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --binary-images iso-hybrid \
     --bootloaders grub-efi \
     --apt-secure false \
-    --updates true
+    --updates true \
+    --debian-installer live \
+    --debian-installer-gui true
     # --firmware-binary false \
     # --firmware-chroot false \
     # --apt-recommends false
@@ -106,7 +108,7 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
 # persistence 持久化
 # package-lists need to apt install packages in chroot
 cp addpackage-custom.list.chroot config/package-lists/
-# cp addpackage-desktop.list.chroot config/package-lists/
+cp addpackage-desktop.list.chroot config/package-lists/
 # add other live packages 
 cat > config/package-lists/livepkg.list.chroot << EOF
 grub-efi-arm64
@@ -159,7 +161,7 @@ apt-get clean
 #rm -rf /var/cache/apt/archives/*.deb
 # 清理临时文件与日志
 rm -rf /tmp/*
-rm -rf /var/tmp/*
+# rm -rf /var/tmp/*
 # 删除文档和本地化文件（如果空间极度敏感）
 # find /usr/share/doc -type f ! -name copyright -delete
 # find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en' ! -name 'en_US' ! -name 'zh_CN' | xargs rm -rf

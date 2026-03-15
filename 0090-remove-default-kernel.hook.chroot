@@ -39,11 +39,11 @@ else
 fi
 
 
-apt-get install --install-recommends --reinstall live-boot \
- live-config live-config-systemd live-config-systemd live-tools -y
+# apt-get install --install-recommends --reinstall live-boot \
+#  live-config live-config-systemd live-config-systemd live-tools -y
 
-apt-get install --install-recommends --reinstall sddm wireless-regdb libcrack2 cracklib-runtime dosfstools -y
+# apt-get install --install-recommends --reinstall sddm wireless-regdb libcrack2 cracklib-runtime dosfstools -y
 
-apt-get install --install-recommends --reinstall network-manager plasma-nm plasma-workspace kwin-wayland konsole -y
+# apt-get install --install-recommends --reinstall network-manager plasma-nm plasma-workspace kwin-wayland konsole -y
 
-apt-get install --no-install-recommends task-kde-desktop  -y
+# apt-get install --no-install-recommends task-kde-desktop  -y

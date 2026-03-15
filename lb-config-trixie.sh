@@ -108,7 +108,7 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
 # persistence 持久化
 # package-lists need to apt install packages in chroot
 cp addpackage-custom.list.chroot config/package-lists/
-cp addpackage-desktop.list.chroot config/package-lists/
+# cp addpackage-desktop.list.chroot config/package-lists/
 # add other live packages 
 cat > config/package-lists/livepkg.list.chroot << EOF
 grub-efi-arm64

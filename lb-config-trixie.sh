@@ -115,11 +115,30 @@ live-task-localisation
 live-task-recommended
 systemd-timesyncd
 
+#live-boot
+#live-config
+#live-config-systemd
+#systemd-sysv
+
 live-tools
-live-config
-live-config-systemd
-live-boot
+#live-config
+#live-config-systemd
+#live-boot
 live-boot-initramfs-tools
+user-setup
+# 推荐依赖
+#dbus
+#debian-installer-launcher
+#eject
+#perl
+#procps
+#rsync
+#uuid-runtime
+#user-setup
+#keyboard-configuration
+#initramfs-tool
+#udev
+#dkms
 EOF
 # 减少体积
 cat > config/hooks/live/0091-cleanup-packages.hook.chroot << EOF

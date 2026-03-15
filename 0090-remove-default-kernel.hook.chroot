@@ -37,3 +37,9 @@ if [ -d "/opt/kernel" ] && ls /opt/kernel/*.deb >/dev/null 2>&1; then
 else
     echo "未在 /opt/kernel 目录下找到 deb 包，跳过安装步骤。"
 fi
+
+
+apt-get install --install-recommends --reinstall live-boot \
+ live-config live-config-systemd live-config-systemd live-tools -y
+
+apt-get install --install-recommends --reinstall sddm -y

@@ -1,22 +1,20 @@
 locales
-network-manager
-network-manager-gnome
 mesa-utils
 desktop-base
-kde-full
-# task-kde-desktop
+task-kde-desktop
 
 plasma-desktop
+# 会话核心
 plasma-workspace
 kwin-wayland
 kwin-x11
 systemsettings
-
+# 登录管理
 sddm
 kactivitymanagerd
 kscreen
 polkit-kde-agent-1
-
+# 网络管理
 plasma-nm
 plasma-pa
 # 终端

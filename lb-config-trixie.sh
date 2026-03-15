@@ -106,7 +106,7 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
 # persistence 持久化
 # package-lists need to apt install packages in chroot
 cp addpackage-custom.list.chroot config/package-lists/
-cp addpackage-desktop.list.chroot config/package-lists/
+# cp addpackage-desktop.list.chroot config/package-lists/
 # add other live packages 
 cat > config/package-lists/livepkg.list.chroot << EOF
 grub-efi-arm64
@@ -144,19 +144,19 @@ EOF
 cat > config/hooks/live/0091-cleanup-packages.hook.chroot << EOF
 #!/bin/bash
 
-apt-get purge -y libreoffice*
-apt-get purge -y gimp print-manager orca okular kmail ark akregator dragonplayer juk gwenview khelpcenter kcalc
-apt-get purge -y firefox-esr
+#apt-get purge -y libreoffice*
+#apt-get purge -y gimp print-manager orca okular kmail ark akregator dragonplayer juk gwenview khelpcenter kcalc
+#apt-get purge -y firefox-esr
 
-apt-get purge -y --auto-remove
-apt-get autoremove -y
+#apt-get purge -y --auto-remove
+#apt-get autoremove -y
 
 
 # 清理APT缓存
 apt-get clean
 
-rm -rf /var/lib/apt/lists/*
-rm -rf /var/cache/apt/archives/*.deb
+#rm -rf /var/lib/apt/lists/*
+#rm -rf /var/cache/apt/archives/*.deb
 # 清理临时文件与日志
 rm -rf /tmp/*
 rm -rf /var/tmp/*

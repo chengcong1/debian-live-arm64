@@ -1,55 +1,64 @@
 locales
 mesa-utils
 task-kde-desktop
-#desktop-base
+desktop-base
 # 含常用 KDE 应用
-#kde-standard
-#plasma-desktop
+kde-standard
+plasma-desktop
 # 会话核心
-#plasma-workspace
-#kwin-wayland
-#kwin-x11
-#systemsettings
+plasma-workspace
+kwin-wayland
+kwin-x11
+systemsettings
 # 登录管理
-#sddm
-#kactivitymanagerd
+sddm
+kactivitymanagerd
 # 屏幕管理（多显示器、分辨率）
-#kscreen
+kscreen
 
-#polkit-kde-agent-1
+polkit-kde-agent-1
 # 网络管理
 network-manager
 network-manager-gnome
-#plasma-nm
+plasma-nm
 # 音频管理
-#plasma-pa
-#pulseaudio-utils
+plasma-pa
+pulseaudio-utils
 # 终端
-#konsole
+konsole
 # 文件管理器
-#dolphin
+dolphin
 # KDE 高级文本编辑器
-#kate
+kate
 # 系统监控
-#plasma-systemmonitor
+plasma-systemmonitor
 # kde截图工具
-#kde-spectacle
+kde-spectacle
 # KDE 蓝牙管理
-#bluedevil
+bluedevil
 # 电源管理
-#powerdevil
-#upower
+powerdevil
+upower
 # 系统信息
-#kinfocenter
+kinfocenter
 # 归档管理
-#ark
+ark
 # 计算器
-#kcalc
+kcalc
 # 图形信息
-#edid-decode
-#wayland-utils
-#vulkan-tools
+edid-decode
+wayland-utils
+vulkan-tools
 # 系统信息-固件安全性依赖
-#aha
+aha
 # lspci工具
-#pciutils
+pciutils
+# kde基础工具
+## faux_driver regulatory：direct firmware load for regulatory.db failed with eror 2
+## 系统缺少无线法规数据库文件 (regulatory.db)。
+wireless-regdb
+## 在live系统中 创建用户阶段 新密码无法通过字典检查 error loading dictionary
+libcrack2
+cracklib-runtime
+## fat32格式化工具
+dosfstools

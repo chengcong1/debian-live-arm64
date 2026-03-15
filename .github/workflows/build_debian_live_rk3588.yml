@@ -65,21 +65,22 @@ jobs:
           echo $(pwd)
           cp ../lb-config-${{ matrix.CODENAME }}.sh lb-config.sh
           cp ../addpackage-custom.list.chroot .
-          cp ../addpackage-server.list.chroot ./addpackage-desktop.list.chroot
+          cp ../addpackage-kde.list.chroot ./addpackage-desktop.list.chroot
           
           chmod +x lb-config.sh
           ./lb-config.sh
           sudo apt -y install qemu-user-static debian-archive-keyring
           
           sudo lb build
-
+          split -b 1800M debian-trixie-live-arm64.hybrid.iso part_
       - name: Upload iso
         uses: xresloader/upload-to-github-release@v1
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release_id: ${{ needs.prepare_release.outputs.release_id }}
-          file: iso-build/*.iso
+          # file: iso-build/*.iso
+          file: iso-build/part_*
           draft: false
           overwrite: true
       - name: Rollback release

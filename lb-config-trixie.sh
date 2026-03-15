@@ -90,12 +90,11 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --binary-images iso-hybrid \
     --bootloaders grub-efi \
     --apt-secure false \
-    --updates true
-    # --debian-installer live \
-    # --debian-installer-gui true
+    --updates true \
+    --debian-installer live \
+    --debian-installer-gui true
     # --firmware-binary false \
     # --firmware-chroot false \
-    # --apt-recommends false
     # --debian-installer false
     # --cache-packages true \
     # --cache-stages bootstrap,chroot
@@ -108,7 +107,7 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
 # persistence 持久化
 # package-lists need to apt install packages in chroot
 cp addpackage-custom.list.chroot config/package-lists/
-# cp addpackage-desktop.list.chroot config/package-lists/
+cp addpackage-desktop.list.chroot config/package-lists/
 # add other live packages 
 cat > config/package-lists/livepkg.list.chroot << EOF
 grub-efi-arm64
@@ -172,9 +171,11 @@ chmod +x config/hooks/live/0091-cleanup-packages.hook.chroot
 
 # copy custom kernel in config/packages.chroot/
 # no apt packages in config/packages.chroot/ auto install
-cp ../kernel/*.deb config/packages.chroot/
+
 # mkdir -p config/includes.chroot/opt/
 # cp ../kernel/*.deb config/includes.chroot/opt/
+cp ../kernel/*.deb config/packages.chroot/
+
 # hooks remove-default-kernel
 cp ../0090-remove-default-kernel.hook.chroot config/hooks/live/
 chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot
@@ -184,8 +185,8 @@ mkdir -p config/includes.chroot/usr/lib/firmware
 cp -r ../rtw89 config/includes.chroot/usr/lib/firmware/
 cp -r ../rtl_bt config/includes.chroot/usr/lib/firmware/
 # 如果内核包名还是版本是以-arm64结尾的，那么下面两行代码可以删除
-# mkdir -p config/bootloaders/grub-pc
-# cp ../grub.cfg config/bootloaders/grub-pc/
+mkdir -p config/bootloaders/grub-pc
+cp ../grub.cfg config/bootloaders/grub-pc/
 # mkdir -p config/includes.chroot/opt/
 # cp ../kernel/*.deb config/includes.chroot/opt/
 # sudo lb build

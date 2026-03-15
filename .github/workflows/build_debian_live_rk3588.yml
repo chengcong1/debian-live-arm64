@@ -71,12 +71,6 @@ jobs:
           sudo apt -y install qemu-user-static debian-archive-keyring
           
           sudo lb build
-          
-          if [ -f "debian-trixie-live-arm64.hybrid.iso" ]; then
-            xz -9 -T0 debian-trixie-live-arm64.hybrid.iso
-          else
-            echo "ISO file not found,skipping compression"
-          fi
 
       - name: Upload iso
         uses: xresloader/upload-to-github-release@v1
@@ -84,8 +78,7 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release_id: ${{ needs.prepare_release.outputs.release_id }}
-          file: |
-            iso-build/*.iso.xz
+          file: iso-build/*.iso
           draft: false
           overwrite: true
       - name: Rollback release

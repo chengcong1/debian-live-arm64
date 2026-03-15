@@ -2,7 +2,8 @@ locales
 mesa-utils
 desktop-base
 task-kde-desktop
-
+# 含常用 KDE 应用
+kde-standard
 plasma-desktop
 # 会话核心
 plasma-workspace
@@ -12,10 +13,15 @@ systemsettings
 # 登录管理
 sddm
 kactivitymanagerd
+# 屏幕管理（多显示器、分辨率）
 kscreen
+
 polkit-kde-agent-1
 # 网络管理
+network-manager
+# network-manager-gnome
 plasma-nm
+# 音频管理
 plasma-pa
 # 终端
 konsole
@@ -27,3 +33,13 @@ kate
 plasma-systemmonitor
 # kde截图工具
 kde-spectacle
+# KDE 蓝牙管理
+bluedevil
+# 电源管理
+powerdevil
+# 系统信息
+kinfocenter
+# 归档管理
+ark
+# 计算器
+kcalc

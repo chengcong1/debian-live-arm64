@@ -154,6 +154,12 @@ apt-get autoremove -y
 
 # 清理APT缓存
 apt-get clean
+
+rm -rf /var/lib/apt/lists/*
+rm -rf /var/cache/apt/archives/*.deb
+# 清理临时文件与日志
+rm -rf /tmp/*
+rm -rf /var/tmp/*
 # 删除文档和本地化文件（如果空间极度敏感）
 # find /usr/share/doc -type f ! -name copyright -delete
 # find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en' ! -name 'en_US' ! -name 'zh_CN' | xargs rm -rf

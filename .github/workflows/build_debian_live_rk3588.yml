@@ -72,13 +72,20 @@ jobs:
           
           sudo lb build
           
+          if [ -f "debian-trixie-live-arm64.hybrid.iso" ]; then
+            xz -9 -T0 debian-trixie-live-arm64.hybrid.iso
+          else
+            echo "ISO file not found,skipping compression"
+          fi
+
       - name: Upload iso
         uses: xresloader/upload-to-github-release@v1
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release_id: ${{ needs.prepare_release.outputs.release_id }}
-          file: "iso-build/*.iso"
+          file: |
+            iso-build/*.iso.xz
           draft: false
           overwrite: true
       - name: Rollback release

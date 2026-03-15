@@ -72,7 +72,7 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --debian-installer-distribution $DISTRIBUTION \
     --distribution $DISTRIBUTION \
     --distribution-chroot $DISTRIBUTION \
-    --distribution-binary $DISTRIBUTION\
+    --distribution-binary $DISTRIBUTION \
     --keyring-packages "debian-archive-keyring ca-certificates fontconfig-config initramfs-tools" \
     --parent-mirror-bootstrap $MIRROR_BASE \
     --parent-mirror-chroot $MIRROR_BASE \
@@ -84,15 +84,15 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --mirror-chroot $MIRROR_BASE \
     --mirror-chroot-security $MIRROR_SECURITY \
     --mirror-binary $MIRROR_BASE \
-    --mirror-binary-security $MIRROR_BASE \
+    --mirror-binary-security $MIRROR_SECURITY \
     --mirror-debian-installer $MIRROR_BASE \
     --bootappend-live "boot=live components quiet locales=zh_CN.UTF-8" \
     --binary-images iso-hybrid \
     --bootloaders grub-efi \
     --apt-secure false \
-    --updates true \
-    --debian-installer live \
-    --debian-installer-gui true
+    --updates true
+    # --debian-installer live \
+    # --debian-installer-gui true
     # --firmware-binary false \
     # --firmware-chroot false \
     # --apt-recommends false

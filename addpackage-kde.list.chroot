@@ -2,6 +2,7 @@ locales
 network-manager
 network-manager-gnome
 mesa-utils
+task-kde-desktop
 
 plasma-desktop
 plasma-workspace

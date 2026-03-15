@@ -39,7 +39,7 @@ else
 fi
 
 
-apt-get install --install-recommends --reinstall live-boot \
- live-config live-config-systemd live-config-systemd live-tools -y
+# apt-get install --install-recommends --reinstall live-boot \
+#  live-config live-config-systemd live-config-systemd live-tools -y
 
-apt-get install --install-recommends --reinstall sddm -y
+# apt-get install --install-recommends --reinstall sddm -y

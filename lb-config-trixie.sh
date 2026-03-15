@@ -89,11 +89,11 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --bootappend-live "boot=live components quiet locales=zh_CN.UTF-8" \
     --binary-images iso-hybrid \
     --bootloaders grub-efi \
-    --firmware-binary false \
-    --firmware-chroot false \
     --apt-secure false \
-    --updates true \
-    --apt-recommends false
+    --updates true
+    # --firmware-binary false \
+    # --firmware-chroot false \
+    # --apt-recommends false
     # --debian-installer false
     # --cache-packages true \
     # --cache-stages bootstrap,chroot
@@ -143,12 +143,22 @@ EOF
 # 减少体积
 cat > config/hooks/live/0091-cleanup-packages.hook.chroot << EOF
 #!/bin/bash
+
+apt-get purge -y libreoffice*
+apt-get purge -y gimp print-manager orca okular kmail ark akregator dragonplayer juk gwenview khelpcenter kcalc
+apt-get purge -y firefox-esr
+
+apt-get purge -y --auto-remove
+apt-get autoremove -y
+
+
 # 清理APT缓存
 apt-get clean
 # 删除文档和本地化文件（如果空间极度敏感）
 # find /usr/share/doc -type f ! -name copyright -delete
 # find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en' ! -name 'en_US' ! -name 'zh_CN' | xargs rm -rf
 # find /usr/share/man -type f -delete
+
 EOF
 chmod +x config/hooks/live/0091-cleanup-packages.hook.chroot
 

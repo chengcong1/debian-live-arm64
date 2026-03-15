@@ -1,0 +1,63 @@
+name: build_mainline_kernel
+on:
+  workflow_dispatch:
+jobs:
+  prepare_release:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Get time
+        id: time
+        uses: nanzm/get-time-action@v1.1
+        with:
+          format: 'YYYYMMDD-HHmm'
+      - name: Create empty release
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.time.outputs.time }}
+          body_path: README.md
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: false
+    outputs:
+      release_id: ${{ steps.release.outputs.id }}
+  build:
+    runs-on: ubuntu-24.04-arm
+    needs: prepare_release
+    strategy:
+      matrix:
+        CODENAME: [trixie]
+    steps:
+      - name: Install deb deps
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: git debhelper libdw-dev bc python3 build-essential libncurses-dev xz-utils libssl-dev flex libelf-dev bison
+          version: 1.0
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Get Kernel Source And Build
+        shell: bash
+        run: |
+          git clone --depth 1 https://github.com/torvalds/linux.git linux-src
+          cd linux-src
+          cp ../kernel.config .config
+          make olddefconfig
+          make -j2 bindeb-pkg LOCALVERSION=-arm64
+          
+      - name: Upload Kernel Package
+        uses: xresloader/upload-to-github-release@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_id: ${{ needs.prepare_release.outputs.release_id }}
+          file: "*.deb"
+          draft: false
+          overwrite: true
+      - name: Rollback release
+        if: failure()
+        uses: author/action-rollback@stable
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_id: ${{ needs.prepare_release.outputs.release_id }}

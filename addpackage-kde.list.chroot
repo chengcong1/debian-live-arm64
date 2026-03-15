@@ -19,10 +19,11 @@ kscreen
 polkit-kde-agent-1
 # 网络管理
 network-manager
-# network-manager-gnome
+network-manager-gnome
 plasma-nm
 # 音频管理
 plasma-pa
+pulseaudio-utils
 # 终端
 konsole
 # 文件管理器
@@ -37,9 +38,18 @@ kde-spectacle
 bluedevil
 # 电源管理
 powerdevil
+upower
 # 系统信息
 kinfocenter
 # 归档管理
 ark
 # 计算器
 kcalc
+# 图形信息
+edid-decode
+wayland-utils
+vulkan-tools
+# 系统信息-固件安全性依赖
+aha
+# lspci工具
+pciutils

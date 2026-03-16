@@ -91,8 +91,9 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --bootloaders grub-efi \
     --apt-secure false \
     --updates true \
-    --debian-installer live \
-    --debian-installer-gui true
+    --apt-cache false
+    # --debian-installer live \
+    # --debian-installer-gui true
     # --firmware-binary false \
     # --firmware-chroot false \
     # --debian-installer false
@@ -155,12 +156,11 @@ cat > config/hooks/live/0091-cleanup-packages.hook.chroot << EOF
 
 # 清理APT缓存
 apt-get clean
-
-#rm -rf /var/lib/apt/lists/*
+rm -rf /var/lib/apt/lists/*
 #rm -rf /var/cache/apt/archives/*.deb
 # 清理临时文件与日志
 rm -rf /tmp/*
-# rm -rf /var/tmp/*
+rm -rf /var/tmp/*
 # 删除文档和本地化文件（如果空间极度敏感）
 # find /usr/share/doc -type f ! -name copyright -delete
 # find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en' ! -name 'en_US' ! -name 'zh_CN' | xargs rm -rf

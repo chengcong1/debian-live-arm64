@@ -90,8 +90,7 @@ LB_IMAGE_NAME="$MODE-$DISTRIBUTION-live" lb config \
     --binary-images iso-hybrid \
     --bootloaders grub-efi \
     --apt-secure false \
-    --updates true \
-    --apt-cache false
+    --updates true
     # --debian-installer live \
     # --debian-installer-gui true
     # --firmware-binary false \

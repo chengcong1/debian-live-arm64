@@ -15,9 +15,11 @@ KERNELTAG=$(./oras repo tags ghcr.io/armbian/os/kernel-rockchip64-edge | grep "7
 
 tar -xf kernel-rockchip64-edge_*.tar
 
-cp global/linux-image-edge-rockchip64_*.deb .
-cp global/linux-headers-edge-rockchip64_*.deb .
-cp global/linux-libc-dev-edge-rockchip64_*.deb .
+# cp global/linux-image-edge-rockchip64_*.deb .
+# cp global/linux-headers-edge-rockchip64_*.deb .
+# cp global/linux-libc-dev-edge-rockchip64_*.deb .
+
+cp global/*.deb .
 
 # wget https://github.com/chengcong1/debian-live-arm64/releases/download/kernel_linux-7.0-rc2/linux-image-7.0.0-rc2-moli-arm64.deb
 # wget https://github.com/chengcong1/debian-live-arm64/releases/download/kernel_linux-7.0-rc2/linux-headers-7.0.0-rc2-moli-arm64.deb

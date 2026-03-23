@@ -72,7 +72,7 @@ jobs:
           sudo apt -y install qemu-user-static debian-archive-keyring
           
           sudo lb build
-          split -b 1800M debian-trixie-live-arm64.hybrid.iso part_
+          split -b 1800M debian-${{ matrix.CODENAME }}-live-arm64.hybrid.iso part_
       - name: Upload iso
         uses: xresloader/upload-to-github-release@v1
         env:

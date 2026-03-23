@@ -164,6 +164,6 @@ cp -r ../rtl_bt config/includes.chroot/usr/lib/firmware/
 # mkdir -p config/bootloaders/grub-pc
 # cp ../grub.cfg config/bootloaders/grub-pc/
 # cp ../rk3588-rock-5b.dtb config/bootloaders/grub-pc/
-# mkdir -p config/includes.chroot/opt/
-# cp ../kernel/*.deb config/includes.chroot/opt/
+mkdir -p config/includes.chroot/opt/
+cp ../kernel/*.deb config/includes.chroot/opt/
 # sudo lb build

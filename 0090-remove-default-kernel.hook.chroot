@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+# 如果后续更新内核包，不删除raspi-firmware可能存在问题
 sudo dpkg --purge --force-depends raspi-firmware
 
 sudo apt --fix-broken install

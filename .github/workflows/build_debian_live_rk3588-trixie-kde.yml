@@ -1,4 +1,4 @@
-name: build_debian_live_rk3588
+name: build-rk3588-trixie-kde
 on:
   # push:
   #   branches:

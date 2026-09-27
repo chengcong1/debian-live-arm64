@@ -29,7 +29,7 @@ jobs:
           for dir in */; do
             dir_name="${dir%/}"
             echo "Zipping $dir_name ..."
-            zip -r -q "../${dir_name}.zip" "$dir_name" -x "*/.gitignore" "*/node_modules/*"
+            zip -r -q -y "../${dir_name}.zip" "$dir_name" -x "*/.gitignore" "*/node_modules/*"
           done
           cd ..
           ls -lh *.zip

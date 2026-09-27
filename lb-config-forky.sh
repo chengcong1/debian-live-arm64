@@ -151,20 +151,20 @@ chmod +x config/hooks/live/0091-cleanup-packages.hook.chroot
 # mkdir -p config/includes.chroot/opt/
 # cp ../kernel/*.deb config/includes.chroot/opt/
 
-cp ../kernel/*.deb config/packages.chroot/
+# cp ../kernel/*.deb config/packages.chroot/
 
 # hooks remove-default-kernel
-cp ../0090-remove-default-kernel.hook.chroot config/hooks/live/
-chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot
+#cp ../0090-remove-default-kernel.hook.chroot config/hooks/live/
+#chmod +x config/hooks/live/0090-remove-default-kernel.hook.chroot
 
 # 复制rtl8852be的固件到firmware目录
 mkdir -p config/includes.chroot/usr/lib/firmware
 cp -r ../rtw89 config/includes.chroot/usr/lib/firmware/
 cp -r ../rtl_bt config/includes.chroot/usr/lib/firmware/
 # 如果内核包名还是版本是以-arm64结尾的，那么下面两行代码可以删除
-mkdir -p config/bootloaders/grub-pc
-cp ../grub.cfg config/bootloaders/grub-pc/
-cp ../rk3588-rock-5b.dtb config/bootloaders/grub-pc/
+#mkdir -p config/bootloaders/grub-pc
+#cp ../grub.cfg config/bootloaders/grub-pc/
+#cp ../rk3588-rock-5b.dtb config/bootloaders/grub-pc/
 # mkdir -p config/includes.chroot/opt/
 # cp ../kernel/*.deb config/includes.chroot/opt/
 # sudo lb build

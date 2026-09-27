@@ -1,0 +1,37 @@
+name: build_rock5b_kernel_collabora
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git debhelper libdw-dev bc python3 build-essential \
+            libncurses-dev xz-utils libssl-dev flex libelf-dev bison
+
+      - name: Get Kernel Source
+        run: |
+          # 克隆 Collabora 的 RK3588 内核源码
+          git clone --depth 1 https://github.com/functionland/collabora-RK3588-linux.git linux-src
+          cd linux-src
+
+      - name: Configure and Build Kernel
+        working-directory: ./linux-src
+        run: |
+          # 使用 arm64 默认配置
+          make ARCH=arm64 defconfig
+          # 编译内核及 .deb 包
+          make -j$(nproc) ARCH=arm64 bindeb-pkg LOCALVERSION=-rock5b
+          
+      - name: Upload Kernel Package
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            linux-src/../*.deb
+          tag_name: "rock5b-kernel-${{ github.run_number }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

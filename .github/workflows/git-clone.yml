@@ -1,0 +1,56 @@
+name: Clone and Release ZIP
+
+on:
+  # 手动触发
+  workflow_dispatch:
+
+jobs:
+  clone-and-zip:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout workflow repo
+        uses: actions/checkout@v4
+
+      - name: Parse repos config
+        id: parse
+        run: |
+          echo '${{ github.event.inputs.repos }}' > repos.json
+          cat repos.json
+
+      - name: Clone repositories (shallow, single branch)
+        run: |
+          mkdir -p output
+        
+      - name: Create ZIP archives
+        run: |
+          cd output
+          git clone --depth 1 -b rockchip-v7.2 https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux.git collabora-kernel-rockchip-v7.2
+          git clone --depth 1 -b v4l2request-hwdevice https://github.com/Kwiboo/mpv mpv-v4l2request-hwdevice
+          git clone --recursive https://github.com/xfangfang/wiliwili.git wiliwili_v1.6.0
+          git clone --depth 1 -b v4l2request-2024-v2 https://github.com/Kwiboo/FFmpeg ffmpeg-v4l2request-2024-v2
+          git clone --depth 1 -b v4l2request-n7.1.3 https://github.com/Kwiboo/FFmpeg libavif-v4l2request-n7.1.3
+          wget https://git.eden-emu.dev/eden-emu/eden/archive/v0.2.1.zip
+          mv v0.2.1.zip eden-v0.2.1.zip
+          
+          for dir in */; do
+            dir_name="${dir%/}"
+            echo "Zipping $dir_name ..."
+            zip -r -q "../${dir_name}.zip" "$dir_name" -x "*/.gitignore" "*/node_modules/*"
+          done
+          cd ..
+          ls -lh *.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.release_tag }}
+          name: ${{ github.event.inputs.release_name }}
+          files: |
+            *.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

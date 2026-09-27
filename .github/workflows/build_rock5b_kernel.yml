@@ -16,7 +16,7 @@ jobs:
       - name: Get Kernel Source
         run: |
           # 克隆 Collabora 的 RK3588 内核源码
-          git clone --depth 1 https://github.com/functionland/collabora-RK3588-linux.git linux-src
+          git clone --depth 1 https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux.git linux-src
           cd linux-src
 
       - name: Configure and Build Kernel

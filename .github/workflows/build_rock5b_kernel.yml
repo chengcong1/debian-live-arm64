@@ -25,7 +25,7 @@ jobs:
           # 使用 arm64 默认配置
           make ARCH=arm64 defconfig
           # 编译内核及 .deb 包
-          make -j$(nproc) ARCH=arm64 bindeb-pkg LOCALVERSION=-rock5b
+          make -j2 ARCH=arm64 bindeb-pkg LOCALVERSION=-rock5b
           
       - name: Upload Kernel Package
         uses: softprops/action-gh-release@v1

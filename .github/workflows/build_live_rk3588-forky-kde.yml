@@ -1,4 +1,4 @@
-name: build-rk3588-trixie-kde
+name: build-rk3588-forky-kde
 on:
   # push:
   #   branches:

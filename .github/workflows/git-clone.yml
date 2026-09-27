@@ -22,7 +22,7 @@ jobs:
           git clone --depth 1 -b v4l2request-hwdevice https://github.com/Kwiboo/mpv mpv-v4l2request-hwdevice
           git clone --recursive https://github.com/xfangfang/wiliwili.git wiliwili_v1.6.0
           git clone --depth 1 -b v4l2request-2024-v2 https://github.com/Kwiboo/FFmpeg ffmpeg-v4l2request-2024-v2
-          git clone --depth 1 -b v4l2request-n7.1.3 https://github.com/Kwiboo/FFmpeg libavif-v4l2request-n7.1.3
+          git clone --depth 1 -b v4l2-request-n7.1.3 https://github.com/Kwiboo/FFmpeg ffmpeg-v4l2-request-n7.1.3
           wget https://git.eden-emu.dev/eden-emu/eden/archive/v0.2.1.zip
           mv v0.2.1.zip eden-v0.2.1.zip
 

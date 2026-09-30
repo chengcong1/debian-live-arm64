@@ -1,0 +1,39 @@
+name: Clone and Release ZIP
+
+on:
+  # 手动触发
+  workflow_dispatch:
+
+jobs:
+  clone-and-zip:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout workflow repo
+        uses: actions/checkout@v4
+        
+      - name: Create ZIP archives
+        run: |
+          mkdir -p output
+          cd output
+          git clone --depth 1 https://gitlab.freedesktop.org/mesa/mesa.git
+
+          for dir in */; do
+            dir_name="${dir%/}"
+            echo "Zipping $dir_name ..."
+            zip -r -q -y "../${dir_name}.zip" "$dir_name" -x "*/.gitignore" "*/node_modules/*"
+          done
+          cd ..
+          ls -lh *.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Build ${{ github.run_number }}
+          files: |
+            *.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

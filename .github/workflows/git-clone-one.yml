@@ -19,7 +19,7 @@ jobs:
           mkdir -p output
           cd output
           # git clone --depth 1 https://gitlab.freedesktop.org/mesa/mesa.git
-          git clone --depth 1 https://gitlab.freedesktop.org/olivia/mesa.git
+          git clone --depth 1 -b panvk/gs https://gitlab.freedesktop.org/olivia/mesa.git
 
           for dir in */; do
             dir_name="${dir%/}"
